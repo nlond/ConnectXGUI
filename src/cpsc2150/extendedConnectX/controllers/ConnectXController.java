@@ -59,11 +59,17 @@ public class ConnectXController {
      * @post [ the controller will respond to actions on the view using the model. ]
      */
     public ConnectXController(IGameBoard model, ConnectXView view, int np) {
+
+        // currGame has the correct number of rows, cols, and nums to win
+        // it also contains the methods for the whole game
         this.curGame = model;
+
+        // update the view by calling functions from screen
         this.screen = view;
         this.numPlayers = np;
 
         // Some code is needed here.
+        System.out.println("constructor was called");
     }
 
     /**
@@ -79,7 +85,23 @@ public class ConnectXController {
      * game hitting any button ]
      */
     public void processButtonClick(int col) {
-        // Your code goes here.
+
+        System.out.println("col: " + col + " was clicked");
+
+        // basically create a game loop with backend code except without a loop
+        // since this is called
+
+        // whenever a column button is clicked:
+
+        // 1.) check for a win or a tie
+            // a.) if yes, reprompt player for a new game
+
+            // b.) if no:
+                // 1.) check if column is free
+                // 2.) drop token
+                // 3.) go to next player's turn
+
+
     }
 
     /**

@@ -89,6 +89,8 @@ public class SetupController {
 
         if (!errorMsg.equals("")) {
             view.displayError(errorMsg);
+
+        // if there are no errors with the entered rows, columns, num to win, or players
         } else {
             view.closeScreen();
             IGameBoard model;
