@@ -85,23 +85,38 @@ public class ConnectXController {
      * game hitting any button ]
      */
     public void processButtonClick(int col) {
-
-        System.out.println("col: " + col + " was clicked");
-
         // basically create a game loop with backend code except without a loop
         // since this is called
 
-        // whenever a column button is clicked:
-
         // 1.) check for a win or a tie
-            // a.) if yes, reprompt player for a new game
-
-            // b.) if no:
+            // a.) if no:
                 // 1.) check if column is free
                 // 2.) drop token
                 // 3.) go to next player's turn
+        if (!curGame.checkForWin(col)) {
+            if (curGame.checkIfFree(col)) {
 
+                // find bottom-most space available and set the token
+                for (int row = 0; row < curGame.getNumRows()-1; row++) {
 
+                    char atPos = curGame.whatsAtPos(new BoardPosition(row, col));
+                    if (atPos == ' ') {
+                        curGame.dropToken('X', col);
+                        screen.setMarker(row, col, 'X');
+                        break;
+                    }
+                }
+
+                System.out.println(curGame.toString());
+            }
+        }
+
+        // b.) if yes, reprompt player for a new game
+        if (curGame.checkForWin(col) || curGame.checkTie()) {
+            System.out.println("you won");
+            screen.setMessage("you won");
+            this.newGame();
+        }
     }
 
     /**
