@@ -45,6 +45,7 @@ public class ConnectXView extends JFrame implements ActionListener {
      * @post [ a functional screen with a row x col grid of buttons will be created ]
      */
     public ConnectXView(int row, int col) {
+
         //call super constructor to make JFrame
         super("Connect X Game");
         ROWS_IN_BUTTON_PANEL = row;

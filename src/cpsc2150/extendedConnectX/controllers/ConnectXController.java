@@ -3,6 +3,10 @@ package cpsc2150.extendedConnectX.controllers;
 import cpsc2150.extendedConnectX.models.*;
 import cpsc2150.extendedConnectX.views.*;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 /**
  * The controller class will handle communication between our View and our Model ({@link IGameBoard})
  * <p>
@@ -85,9 +89,6 @@ public class ConnectXController {
         this.numPlayers = np;
         this.playerItr = 0;
         this.playerTurn = 1;
-
-        // set total players
-        System.out.println("constructor was called");
     }
 
     /**
@@ -162,8 +163,10 @@ public class ConnectXController {
     private void newGame() {
         //close the current screen
         screen.dispose();
-        
-        //start back at the set up menu
+
+        // create another JFrame class where it has two buttons, one for playing again and one for not
+
+        //start back at the set-up menu
         SetupView screen = new SetupView();
         SetupController controller = new SetupController(screen);
         screen.registerObserver(controller);
