@@ -44,6 +44,11 @@ public class ConnectXController {
      */
     private int numPlayers;
 
+
+    private int playerItr;
+
+    char[] players = {'X', 'O', 'R', 'T', 'P', 'Q', 'W', 'K', 'S', 'Z'};
+
     /**
      * <p>
      * This creates a controller for running the Extended ConnectX game
@@ -67,8 +72,9 @@ public class ConnectXController {
         // update the view by calling functions from screen
         this.screen = view;
         this.numPlayers = np;
+        this.playerItr = 0;
 
-        // Some code is needed here.
+        // set total players
         System.out.println("constructor was called");
     }
 
@@ -88,6 +94,11 @@ public class ConnectXController {
         // basically create a game loop with backend code except without a loop
         // since this is called
 
+        System.out.println("player iterator is: " + playerItr);
+        if (playerItr == numPlayers) {
+            playerItr = 0;
+        }
+
         // 1.) check for a win or a tie
             // a.) if no:
                 // 1.) check if column is free
@@ -101,8 +112,8 @@ public class ConnectXController {
 
                     char atPos = curGame.whatsAtPos(new BoardPosition(row, col));
                     if (atPos == ' ') {
-                        curGame.dropToken('X', col);
-                        screen.setMarker(row, col, 'X');
+                        curGame.dropToken(players[playerItr], col);
+                        screen.setMarker(row, col, players[playerItr]);
                         break;
                     }
                 }
@@ -110,6 +121,8 @@ public class ConnectXController {
                 System.out.println(curGame.toString());
             }
         }
+
+        playerItr++;
 
         // b.) if yes, reprompt player for a new game
         if (curGame.checkForWin(col) || curGame.checkTie()) {
