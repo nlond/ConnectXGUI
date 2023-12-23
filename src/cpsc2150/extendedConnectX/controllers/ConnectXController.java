@@ -44,10 +44,21 @@ public class ConnectXController {
      */
     private int numPlayers;
 
-
+    /**
+     * <p>
+     * An integer that serves as the iterator that keeps track of who's turn it is
+     * </p>
+     */
     private int playerItr;
 
+    /**
+     * <p>
+     * The different player tokens that are available for this game (10 of them).
+     * </p>
+     */
     char[] players = {'X', 'O', 'R', 'T', 'P', 'Q', 'W', 'K', 'S', 'Z'};
+
+    private int playerTurn;
 
     /**
      * <p>
@@ -73,6 +84,7 @@ public class ConnectXController {
         this.screen = view;
         this.numPlayers = np;
         this.playerItr = 0;
+        this.playerTurn = 1;
 
         // set total players
         System.out.println("constructor was called");
@@ -94,10 +106,18 @@ public class ConnectXController {
         // basically create a game loop with backend code except without a loop
         // since this is called
 
-        System.out.println("player iterator is: " + playerItr);
+        // go back to first player's turn after every player has gone
         if (playerItr == numPlayers) {
             playerItr = 0;
         }
+
+        // iterator for displaying who's turn it is
+        if (playerTurn == numPlayers) {
+            playerTurn = 0;
+        }
+
+        screen.setMessage("It is " + players[playerTurn] + "'s turn");
+        playerTurn++;
 
         // 1.) check for a win or a tie
             // a.) if no:
@@ -124,7 +144,7 @@ public class ConnectXController {
 
         playerItr++;
 
-        // b.) if yes, reprompt player for a new game
+        // b.) if yes, re-prompt player for a new game
         if (curGame.checkForWin(col) || curGame.checkTie()) {
             System.out.println("you won");
             screen.setMessage("you won");
