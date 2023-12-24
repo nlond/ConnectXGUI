@@ -153,7 +153,7 @@ public class ConnectXController {
         if (curGame.checkForWin(col) || curGame.checkTie()) {
             System.out.println("you won");
             screen.setMessage("you won");
-            winnerPlayer = players[playerTurn];
+            winnerPlayer = players[playerItr];
             this.newGame();
         }
     }

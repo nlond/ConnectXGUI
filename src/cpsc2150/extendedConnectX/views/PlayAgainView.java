@@ -1,11 +1,16 @@
 package cpsc2150.extendedConnectX.views;
 
+import cpsc2150.extendedConnectX.controllers.ConnectXController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PlayAgainView extends JFrame implements ActionListener {
+
+    private JButton yesBtn, noBtn;
+    private boolean playerChoice;
 
     public PlayAgainView(char whoWon) {
 
@@ -52,34 +57,38 @@ public class PlayAgainView extends JFrame implements ActionListener {
         centerMidPanel.setPreferredSize(new Dimension(100, 5));
         centerLowPanel.setPreferredSize(new Dimension(100, 100));
 
-        centerTopPanel.setBackground(Color.red);
+        centerTopPanel.setBackground(Color.lightGray);
         centerMidPanel.setBackground(Color.lightGray);
 
         centerPanel.add(centerTopPanel, BorderLayout.NORTH);
         centerPanel.add(centerMidPanel, BorderLayout.CENTER);
         centerPanel.add(centerLowPanel, BorderLayout.SOUTH);
 
-        JLabel label = new JLabel("Player " + whoWon + " Has Won!");
-        label.setFont(new Font("Arial", Font.BOLD, 20));
-        centerTopPanel.add(label, gbc);
+        JLabel winnerText = new JLabel("Player " + whoWon + " Has Won!");
+        winnerText.setFont(new Font("Arial", Font.BOLD, 20));
+        centerTopPanel.add(winnerText, gbc);
 
         gbc.gridy = 1;
-        JLabel label2 = new JLabel("Do you want to play again?");
-        label2.setFont(new Font("Arial", Font.BOLD, 20));
-        centerTopPanel.add(label2, gbc);
+        JLabel promptLabel = new JLabel("Do you want to play again?");
+        promptLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        centerTopPanel.add(promptLabel, gbc);
 
         // -------------------- yes and no buttons ---------------------------
         centerMidPanel.setLayout(new FlowLayout());
 
-        JButton yesBtn = new JButton("Yes");
-        JButton noBtn = new JButton("No");
+        yesBtn = new JButton("Yes");
+        noBtn = new JButton("No");
 
         // button settings
-
+        yesBtn.setFont(new Font("Arial", Font.BOLD, 10));
+        noBtn.setFont(new Font("Arial", Font.BOLD, 10));
 
         centerMidPanel.add(yesBtn);
         centerMidPanel.add(Box.createHorizontalStrut(10));
         centerMidPanel.add(noBtn);
+
+        yesBtn.addActionListener(this);
+        noBtn.addActionListener(this);
 
         //frame settings
         this.setSize(new Dimension(500, 500));
@@ -90,11 +99,23 @@ public class PlayAgainView extends JFrame implements ActionListener {
 
     public boolean playAgain() {
 
-        return true;
+        if (playerChoice) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == yesBtn) {
+            playerChoice = true;
+        }
+        else if (e.getSource() == noBtn) {
+            this.dispose();
+            playerChoice = false;
+        }
 
     }
 }
