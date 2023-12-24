@@ -3,10 +3,6 @@ package cpsc2150.extendedConnectX.controllers;
 import cpsc2150.extendedConnectX.models.*;
 import cpsc2150.extendedConnectX.views.*;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 /**
  * The controller class will handle communication between our View and our Model ({@link IGameBoard})
  * <p>
@@ -33,6 +29,13 @@ public class ConnectXController {
      * </p>
      */
     private ConnectXView screen;
+
+    /**
+     * <p>
+     * The screen that provides our the option to play again
+     * </p>
+     */
+    //private PlayAgainView playAgainScreen;
 
     /**
      * <p>
@@ -63,6 +66,7 @@ public class ConnectXController {
     char[] players = {'X', 'O', 'R', 'T', 'P', 'Q', 'W', 'K', 'S', 'Z'};
 
     private int playerTurn;
+    private char winnerPlayer;
 
     /**
      * <p>
@@ -149,6 +153,7 @@ public class ConnectXController {
         if (curGame.checkForWin(col) || curGame.checkTie()) {
             System.out.println("you won");
             screen.setMessage("you won");
+            winnerPlayer = players[playerTurn];
             this.newGame();
         }
     }
@@ -165,10 +170,14 @@ public class ConnectXController {
         screen.dispose();
 
         // create another JFrame class where it has two buttons, one for playing again and one for not
+        PlayAgainView play = new PlayAgainView(winnerPlayer);
 
+        /*
         //start back at the set-up menu
         SetupView screen = new SetupView();
         SetupController controller = new SetupController(screen);
         screen.registerObserver(controller);
+
+         */
     }
 }
