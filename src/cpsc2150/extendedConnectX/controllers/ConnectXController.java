@@ -169,6 +169,11 @@ public class ConnectXController {
         //close the current screen
         screen.dispose();
 
+
+        // ------------ create a PlayAgainController with separate view and observer pattern -------------
+
+
+        
         // create another JFrame class where it has two buttons, one for playing again and one for not
         PlayAgainView play = new PlayAgainView(winnerPlayer);
 

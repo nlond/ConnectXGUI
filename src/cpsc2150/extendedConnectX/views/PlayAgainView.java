@@ -1,7 +1,5 @@
 package cpsc2150.extendedConnectX.views;
 
-import cpsc2150.extendedConnectX.controllers.ConnectXController;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
