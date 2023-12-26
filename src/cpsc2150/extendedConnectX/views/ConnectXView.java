@@ -69,6 +69,7 @@ public class ConnectXView extends JFrame implements ActionListener {
             button.setMinimumSize(new Dimension(50, 50));
             button.setMaximumSize(new Dimension(50, 50));
             button.setFont(message.getFont().deriveFont(fontSize));
+            button.setFocusable(false);
             colButtons.add(button);
         }
 

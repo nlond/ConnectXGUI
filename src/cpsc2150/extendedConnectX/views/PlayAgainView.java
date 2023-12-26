@@ -83,6 +83,9 @@ public class PlayAgainView extends JFrame implements ActionListener {
         yesBtn.setFont(new Font("Arial", Font.BOLD, 10));
         noBtn.setFont(new Font("Arial", Font.BOLD, 10));
 
+        yesBtn.setFocusable(false);
+        noBtn.setFocusable(false);
+
         centerMidPanel.add(yesBtn);
         centerMidPanel.add(Box.createHorizontalStrut(10));
         centerMidPanel.add(noBtn);

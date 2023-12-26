@@ -41,6 +41,7 @@ public class SetupView extends JFrame implements ActionListener {
      */
     public SetupView() {
         submitButton = new JButton("Submit");
+        submitButton.setFocusable(false);
         numRowsLbl = new JLabel("Number of Rows: ");
         numRowsTxt = new JTextArea(1, 10);
         numColsLbl = new JLabel("Number of Columns: ");

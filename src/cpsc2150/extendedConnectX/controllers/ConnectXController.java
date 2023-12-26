@@ -32,13 +32,6 @@ public class ConnectXController {
 
     /**
      * <p>
-     * The screen that provides our the option to play again
-     * </p>
-     */
-    //private PlayAgainView playAgainScreen;
-
-    /**
-     * <p>
      * Constant for the maximum number of players.
      * </p>
      */
@@ -151,8 +144,6 @@ public class ConnectXController {
 
         // b.) if yes, re-prompt player for a new game
         if (curGame.checkForWin(col) || curGame.checkTie()) {
-            System.out.println("you won");
-            screen.setMessage("you won");
             winnerPlayer = players[playerItr];
             this.newGame();
         }
@@ -169,22 +160,9 @@ public class ConnectXController {
         //close the current screen
         screen.dispose();
 
-
-        // ------------ create a PlayAgainController with separate view and observer pattern -------------
-
-
-
         // create another JFrame class where it has two buttons, one for playing again and one for not
         PlayAgainView play = new PlayAgainView(winnerPlayer);
         PlayAgainController controller = new PlayAgainController(play);
         play.registerObserver(controller);
-
-        /*
-        //start back at the set-up menu
-        SetupView screen = new SetupView();
-        SetupController controller = new SetupController(screen);
-        screen.registerObserver(controller);
-
-         */
     }
 }
