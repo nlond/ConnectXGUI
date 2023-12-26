@@ -1,5 +1,7 @@
 package cpsc2150.extendedConnectX.views;
 
+import cpsc2150.extendedConnectX.controllers.PlayAgainController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +10,7 @@ import java.awt.event.ActionListener;
 public class PlayAgainView extends JFrame implements ActionListener {
 
     private JButton yesBtn, noBtn;
-    private boolean playerChoice;
+    private PlayAgainController controller;
 
     public PlayAgainView(char whoWon) {
 
@@ -95,24 +97,31 @@ public class PlayAgainView extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public boolean playAgain() {
-
-        if (playerChoice) {
-            return true;
-        } else {
-            return false;
-        }
+    /**
+     * <p>
+     * This method registers argument as observer/listener of this; this must be done first,
+     * before any other methods of this class are called.
+     * </p>
+     *
+     * @param c
+     *      Controller to register
+     *
+     * @pre [ c is a valid controller for this view ]
+     * @post this.controller = c
+     */
+    public void registerObserver(PlayAgainController c) {
+        controller = c;
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == yesBtn) {
-            playerChoice = true;
+            controller.yesButtonClick();
         }
         else if (e.getSource() == noBtn) {
-            this.dispose();
-            playerChoice = false;
+            controller.noButtonClick();
         }
 
     }

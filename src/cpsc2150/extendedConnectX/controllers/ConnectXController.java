@@ -176,6 +176,8 @@ public class ConnectXController {
 
         // create another JFrame class where it has two buttons, one for playing again and one for not
         PlayAgainView play = new PlayAgainView(winnerPlayer);
+        PlayAgainController controller = new PlayAgainController(play);
+        play.registerObserver(controller);
 
         /*
         //start back at the set-up menu
