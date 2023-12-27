@@ -129,7 +129,19 @@ public class ConnectXView extends JFrame implements ActionListener {
          * it, that it exits this program when closed, and that it becomes
          * visible to the user now
          */
-        this.pack();
+        //this.pack();
+
+        // screen will change size depending on the number of columns
+        if (COLUMNS_IN_BUTTON_PANEL < 8) {
+            this.setSize(new Dimension(500, 700));
+        }
+        else if (COLUMNS_IN_BUTTON_PANEL < 11) {
+            this.setSize(new Dimension(700, 700));
+        }
+        else {
+            this.setSize(new Dimension(1000, 800));
+        }
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }

@@ -11,8 +11,7 @@ import javax.swing.*;
  * It also is the observer of the submit button. When someone clicks on submit
  * the action performed method is called, which then calls the controller Object.
  * <p>
- * You do not need to make any changes to this file, but it is a good example of
- * a Java swing GUI.
+ *
  * 
  * @version 2.0
  */

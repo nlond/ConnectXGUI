@@ -7,11 +7,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class contains the code that displays the screen that prompts the user if
+ * they want to play the game again
+ * <p>
+ */
 public class PlayAgainView extends JFrame implements ActionListener {
 
     private JButton yesBtn, noBtn;
     private PlayAgainController controller;
 
+    /**
+     * <p>
+     * This constructor creates a screen for asking if the player if they want to play again or not
+     * </p>
+     *
+     * @post [ a functional screen with yes and no options ]
+     */
     public PlayAgainView(char whoWon) {
 
         super("Play Again?");
@@ -116,7 +128,17 @@ public class PlayAgainView extends JFrame implements ActionListener {
         controller = c;
     }
 
-
+    /**
+     * <p>
+     * This is the callback method that gets called as part of the
+     * observer pattern.
+     * </p>
+     *
+     * @param e
+     *      The event on the screen that is observed
+     *
+     * @post [ button events will be sent to the controller ]
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
