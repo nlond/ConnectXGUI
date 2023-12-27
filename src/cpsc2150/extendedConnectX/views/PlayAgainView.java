@@ -22,9 +22,15 @@ public class PlayAgainView extends JFrame implements ActionListener {
      * This constructor creates a screen for asking if the player if they want to play again or not
      * </p>
      *
+     * @param whoWon
+     *       character of the player that won the game that will be displayed on the screen
+     *
+     * @param isTie
+     *       boolean. If this variable is true, then the game resulted in a tie
+     *
      * @post [ a functional screen with yes and no options ]
      */
-    public PlayAgainView(char whoWon) {
+    public PlayAgainView(char whoWon, boolean isTie) {
 
         super("Play Again?");
 
@@ -76,9 +82,18 @@ public class PlayAgainView extends JFrame implements ActionListener {
         centerPanel.add(centerMidPanel, BorderLayout.CENTER);
         centerPanel.add(centerLowPanel, BorderLayout.SOUTH);
 
-        JLabel winnerText = new JLabel("Player " + whoWon + " Has Won!");
-        winnerText.setFont(new Font("Arial", Font.BOLD, 20));
-        centerTopPanel.add(winnerText, gbc);
+        // if the game resulted in a tie, text should display that
+        if (isTie) {
+            JLabel tieText = new JLabel("It is a Tie!");
+            tieText.setFont(new Font("Arial", Font.BOLD, 20));
+            centerTopPanel.add(tieText, gbc);
+        }
+        // if no tie, the player who won the game is displayed
+        else {
+            JLabel winnerText = new JLabel("Player " + whoWon + " Has Won!");
+            winnerText.setFont(new Font("Arial", Font.BOLD, 20));
+            centerTopPanel.add(winnerText, gbc);
+        }
 
         gbc.gridy = 1;
         JLabel promptLabel = new JLabel("Do you want to play again?");

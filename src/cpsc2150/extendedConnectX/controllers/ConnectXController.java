@@ -60,6 +60,7 @@ public class ConnectXController {
 
     private int playerTurn;
     private char winnerPlayer;
+    private boolean isTie = false;
 
     /**
      * <p>
@@ -115,7 +116,6 @@ public class ConnectXController {
         }
 
         screen.setMessage("It is " + players[playerTurn] + "'s turn");
-        playerTurn++;
 
         // 1.) check for a win or a tie
             // a.) if no:
@@ -126,7 +126,7 @@ public class ConnectXController {
             if (curGame.checkIfFree(col)) {
 
                 // find bottom-most space available and set the token
-                for (int row = 0; row < curGame.getNumRows()-1; row++) {
+                for (int row = 0; row < curGame.getNumRows(); row++) {
 
                     char atPos = curGame.whatsAtPos(new BoardPosition(row, col));
                     if (atPos == ' ') {
@@ -136,17 +136,22 @@ public class ConnectXController {
                     }
                 }
 
-                System.out.println(curGame.toString());
+                //System.out.println(curGame.toString());
             }
         }
 
-        playerItr++;
-
         // b.) if yes, re-prompt player for a new game
-        if (curGame.checkForWin(col) || curGame.checkTie()) {
+        if (curGame.checkForWin(col)) {
             winnerPlayer = players[playerItr];
-            this.newGame();
+            this.newGame(isTie);
         }
+        else if (curGame.checkTie()) {
+            isTie = true;
+            this.newGame(isTie);
+        }
+
+        playerItr++;
+        playerTurn++;
     }
 
     /**
@@ -156,12 +161,12 @@ public class ConnectXController {
      * 
      * @post [ a new game gets started ]
      */
-    private void newGame() {
+    private void newGame(boolean gameTied) {
         //close the current screen
         screen.dispose();
 
         // create another JFrame class where it has two buttons, one for playing again and one for not
-        PlayAgainView play = new PlayAgainView(winnerPlayer);
+        PlayAgainView play = new PlayAgainView(winnerPlayer, gameTied);
         PlayAgainController controller = new PlayAgainController(play);
         play.registerObserver(controller);
     }

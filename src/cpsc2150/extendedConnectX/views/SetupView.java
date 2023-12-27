@@ -99,6 +99,7 @@ public class SetupView extends JFrame implements ActionListener {
          * visible to the user now
          */
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }

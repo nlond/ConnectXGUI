@@ -143,6 +143,7 @@ public class ConnectXView extends JFrame implements ActionListener {
         }
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
